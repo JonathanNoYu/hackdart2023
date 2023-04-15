@@ -17,22 +17,19 @@ public class TaxController implements Feature {
   }
 
   @Override
-  public void process() {
-
-  }
-
-  @Override
-  public void setView() {
-
-  }
-
-  @Override
   public void popUpImage(String imageName) {
-
+    this.view.
   }
 
   @Override
-  public void processFlag(String flag) {
+  public void addToFilledInput() {
+    this.model.addToFillCount();
+  }
+
+  @Override
+  public void checkAnswers() {
 
   }
+
+
 }

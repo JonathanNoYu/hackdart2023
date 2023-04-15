@@ -30,13 +30,21 @@ public interface ITaxView {
    * Gets the text from a textField and resets the text to an empty string.
    *
    * @param textField is the text-field we want to get the text of
+   * @param id is the identification number of the text-field
    * @return the string value for the text-field
+   * @throw a exception if the text-field is not filled out correctly
+   *
    */
-  String getTextFromField(TextField textField);
+  String getTextFromField(TextField textField, int id) throws IllegalArgumentException;
 
   /**
    * Getter method to retrieve the amount of text-fields that need to be filled out.
    * @return the number of inputs the user has to deal with
    */
   int getInputCount();
+
+  /**
+   * Exits the view properly.
+   */
+  void end();
 }

@@ -2,24 +2,18 @@ package controller;
 
 public interface Feature {
   /**
-   * General process of the view and model states, should be called
-   */
-  void process();
-
-  /**
-   * Sets the current window to this view
-   */
-  void setView();
-
-  /**
    *  Creates a new popup with
    */
   void popUpImage(String imageName);
 
   /**
-   * Processes a flag, most likely used to create a popup.
-   *
+   * Counts up in the model
    */
-  void processFlag(String flag);
+  void addToFilledInput();
 
+  /**
+   * Checks if all the inputs are right and if all of them are filled out.
+   * If they are not all filled out, render warning to say it is 
+   */
+  void checkAnswers();
 }
