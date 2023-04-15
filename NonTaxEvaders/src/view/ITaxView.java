@@ -33,4 +33,10 @@ public interface ITaxView {
    * @return the string value for the text-field
    */
   String getTextFromField(TextField textField);
+
+  /**
+   * Getter method to retrieve the amount of text-fields that need to be filled out.
+   * @return the number of inputs the user has to deal with
+   */
+  int getInputCount();
 }
