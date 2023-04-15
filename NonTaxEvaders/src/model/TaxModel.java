@@ -1,9 +1,7 @@
 package model;
 
-import com.sun.jdi.connect.TransportTimeoutException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
+import javafx.scene.control.TextField;
 
 public class TaxModel implements ITaxModel {
   final private int inputCount;
@@ -30,12 +28,22 @@ public class TaxModel implements ITaxModel {
   }
 
   @Override
-  public void checkInput(String input) {
+  public void checkInput(TextField input, int id) {
 
   }
 
   @Override
-  public void addToFillCount() {
+  public void setFillCount(int count) {
+    this.filledInputCount = count;
+  }
+
+  @Override
+  public void renderDoc(String Doc) {
 
   }
+
+  @Override
+  public void popAllDocs() {
+
+  };
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.control.TextField;
 import model.ITaxModel;
 import view.ITaxView;
 
@@ -17,19 +18,25 @@ public class TaxController implements Feature {
   }
 
   @Override
-  public void popUpImage(String imageName) {
-    this.view.
+  public void popUpDoc(String doc) {
+    this.model.renderDoc(doc);
   }
 
   @Override
-  public void addToFilledInput() {
-    this.model.addToFillCount();
+  public void setToFilled(int count) {
+    this.model.setFillCount(count);
+    if (count >= 5) {
+      this.model.popAllDocs();
+    }
   }
 
   @Override
   public void checkAnswers() {
-
+    int inputCount = this.view.getInputCount();
+    TextField input;
+    for(int i = 0; i < inputCount; i++) {
+      input = this.view.getTextField(i);
+      this.model.checkInput(input, i);
+    }
   }
-
-
 }

@@ -1,6 +1,7 @@
 package view;
 
 import controller.Feature;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 
 public interface ITaxView {
@@ -27,15 +28,33 @@ public interface ITaxView {
   void renderWarning(String message);
 
   /**
-   * Gets the text from a textField and resets the text to an empty string.
+   * Checks if the text field is a filled out with valid answer(s).
    *
    * @param textField is the text-field we want to get the text of
-   * @param id is the identification number of the text-field
+   * @param id is the identification number of the text-field !! indexed at 0 !!
+   * @return true if the text-field is filled
+   *
+   */
+  boolean checkFilled(TextField textField, int id);
+
+  /**
+   * Gets the text from a textFieldMap and resets the text to an empty string.
+   *
+   * @param textField is the text-field we want to get the text of
+   * @param id is the identification number of the text-field !! indexed at 0 !!
    * @return the string value for the text-field
    * @throw a exception if the text-field is not filled out correctly
    *
    */
   String getTextFromField(TextField textField, int id) throws IllegalArgumentException;
+
+  /**
+   * Gets the text-field of the id
+   * @param id is identification number !! indexed at 0 !!
+   * @return the text-field from the corresponding id
+   * @throws IllegalArgumentException
+   */
+  TextField getTextField(int id) throws IllegalArgumentException;
 
   /**
    * Getter method to retrieve the amount of text-fields that need to be filled out.
@@ -47,4 +66,10 @@ public interface ITaxView {
    * Exits the view properly.
    */
   void end();
+
+  /**
+   * Gets the parent panel of the view
+   * @return the parent panel
+   */
+  Parent getView();
 }
