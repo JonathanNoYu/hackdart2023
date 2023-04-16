@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Random;
 import javafx.scene.control.TextField;
 
@@ -74,8 +75,8 @@ public class TaxModel implements ITaxModel {
     Arrays.sort(array2dfloat);
 
     //creating 8 by 8 array
-    for (int i = 0; i<array2dint.length; i++){
-      for (int j = 0; j < array2dfloat.length; i++){
+    for (int i = 0; i < array2dfloat.length; i++){
+      for (int j = 0; j < array2dint.length; i++){
         document4[i][j] = array2dint[i] * array2dfloat[j];
       }
     }
@@ -108,14 +109,14 @@ public class TaxModel implements ITaxModel {
     this.answerArray[11] = String.valueOf(document4[diary1[7]][diary1[8]] + document4[diary1[9]][diary1[10]]);
 
     int sum2 = 0;
-    for(int i = 0; i < document5.length; i++) {
-      sum2 += document5[i];
+    for (int k : document5) {
+      sum2 += k;
     }
     this.answerArray[12] = String.valueOf(sum2);
 
     int sum3 = 0;
-    for(int i = 0; i < document6.length; i++) {
-      sum3 += document6[i];
+    for (int j : document6) {
+      sum3 += j;
     }
     this.answerArray[13] = String.valueOf(sum3);
 
@@ -126,8 +127,9 @@ public class TaxModel implements ITaxModel {
   }
 
   @Override
-  public void checkInput(TextField input, int id) {
-
+  public boolean checkInput(TextField input, int id) {
+    String str = input.getText();
+    return (Objects.equals(str, this.answerArray[id]));
   }
 
   @Override

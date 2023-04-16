@@ -13,8 +13,9 @@ public interface ITaxModel {
    * Checks the input given to see if it matches up with the rng answer.
    * @param input is the string input that needs
    * @param id is the number that is associated with which correct answer is.
+   * @return boolean to show if the input is correct or not.
    */
-  void checkInput(TextField input, int id);
+  boolean checkInput(TextField input, int id);
 
   /**
    *  Sets the fill count of the model to the given count

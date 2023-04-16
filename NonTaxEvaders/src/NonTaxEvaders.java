@@ -17,6 +17,7 @@ public class NonTaxEvaders extends Application {
     ITaxView view = new TaxView();
     ITaxModel model = new TaxModel(view.getInputCount());
     Feature controller = new TaxController(model, view);
+    view.addFeatures(controller);
     stage.setTitle("NonTaxEvaders!");
     stage.setScene(new Scene(view.getView()));
     // stage.getIcons().add(ImageUtil.LOGO);

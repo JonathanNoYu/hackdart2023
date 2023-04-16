@@ -4,11 +4,14 @@ import controller.Feature;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import org.w3c.dom.Text;
 import util.popUpUtil;
 
@@ -17,6 +20,7 @@ public class TaxView implements ITaxView{
   private final Button submit = new Button("Submit");
   private final HashMap<Integer, TextField> textFieldMap = new HashMap<Integer, TextField>();
   private final int[] fillArr = new int[18];
+  private final String css;
   TextField txf1;
   TextField txf2;
   TextField txf3;
@@ -36,9 +40,29 @@ public class TaxView implements ITaxView{
   TextField txf17;
   TextField txf18;
   public TaxView() {
+    this.css = Objects.requireNonNull(getClass().getResource("/style/mainStyles.css"))
+        .toExternalForm();
     this.mainPanel = new BorderPane();
     this.mainPanel.setPrefHeight(900);
     this.mainPanel.setPrefWidth(1800);
+    this.mainPanel.getStylesheets().add(this.css);
+
+    VBox leftPane = new VBox();
+    leftPane.setPrefHeight(900);
+    leftPane.setPrefWidth(600);
+
+    VBox middlePane = new VBox();
+    middlePane.setPrefHeight(900);
+    middlePane.setPrefWidth(600);
+
+    VBox rightPane = new VBox();
+    rightPane.setPrefHeight(900);
+    rightPane.setPrefWidth(600);
+
+    this.mainPanel.setLeft(leftPane);
+    this.mainPanel.setCenter(middlePane);
+    this.mainPanel.setRight(rightPane);
+
 
     this.txf1 = new TextField("FIRST NAME");
     this.txf2 = new TextField("LAST NAME");
@@ -59,10 +83,6 @@ public class TaxView implements ITaxView{
     this.txf17 = new TextField("NUMBER OF COINS");
     this.txf18 = new TextField("TOTAL TAX OWED");
 
-    for (int i = 0; i < this.textFieldMap.size(); i++) {
-      this.mainPanel.getChildren().add(this.textFieldMap.get(i));
-    }
-
     textFieldMap.put(0, this.txf1);
     textFieldMap.put(1, this.txf2);
     textFieldMap.put(2, this.txf3);
@@ -81,182 +101,39 @@ public class TaxView implements ITaxView{
     textFieldMap.put(15, this.txf16);
     textFieldMap.put(16, this.txf17);
     textFieldMap.put(17, this.txf18);
+
+    for (int i = 0; i < this.textFieldMap.size(); i++) {
+      middlePane.getChildren().add(this.textFieldMap.get(i));
+    }
+
+    middlePane.getChildren().add(this.submit);
   }
 
   @Override
   public void addFeatures(Feature feature) {
-//    for (Map.Entry<Integer, TextField> entry : this.textFieldMap.entrySet()) {
-//      int id = entry.getKey();
-//      TextField txf = entry.getValue();
-//      if (this.checkFilled(txf, id)) {
-//        fillArr[id] = 1;
-//      } else {
-//        fillArr[id] = 0;
-//      }
-//    }
-    this.txf1.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf1, 0)) {
-        fillArr[0] = 1;
-      } else {
-        fillArr[0] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf2.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf2, 1)) {
-        fillArr[1] = 1;
-      } else {
-        fillArr[1] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf3.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf3, 2)) {
-        fillArr[2] = 1;
-      } else {
-        fillArr[2] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf4.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf4, 3)) {
-        fillArr[3] = 1;
-      } else {
-        fillArr[3] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf5.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf5, 4)) {
-        fillArr[4] = 1;
-      } else {
-        fillArr[4] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf6.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf6, 5)) {
-        fillArr[5] = 1;
-      } else {
-        fillArr[5] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf7.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf7, 6)) {
-        fillArr[6] = 1;
-      } else {
-        fillArr[6] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf8.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf8, 7)) {
-        fillArr[7] = 1;
-      } else {
-        fillArr[7] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf9.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf9, 8)) {
-        fillArr[8] = 1;
-      } else {
-        fillArr[8] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf10.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf10, 9)) {
-        fillArr[9] = 1;
-      } else {
-        fillArr[9] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf11.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf11, 10)) {
-        fillArr[10] = 1;
-      } else {
-        fillArr[10] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf12.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf12, 11)) {
-        fillArr[11] = 1;
-      } else {
-        fillArr[11] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf13.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf13, 12)) {
-        fillArr[12] = 1;
-      } else {
-        fillArr[12] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf14.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf14, 13)) {
-        fillArr[13] = 1;
-      } else {
-        fillArr[13] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf15.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf15, 14)) {
-        fillArr[14] = 1;
-      } else {
-        fillArr[14] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf16.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf16, 15)) {
-        fillArr[15] = 1;
-      } else {
-        fillArr[15] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-
-    this.txf17.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf17, 16)) {
-        fillArr[16] = 1;
-      } else {
-        fillArr[16] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
-    this.txf18.setOnAction((evt) -> {
-      if (this.checkFilled(this.txf18, 17)) {
-        fillArr[17] = 1;
-      } else {
-        fillArr[17] = 0;
-      }
-      feature.setToFilled(this.sumFilledArr());
-    });
+    for (Map.Entry<Integer, TextField> entry : this.textFieldMap.entrySet()) {
+      int id = entry.getKey();
+      TextField txf = entry.getValue();
+      txf.setPromptText(txf.getText());
+      txf.setFocusTraversable(false);
+      txf.setText("");
+      txf.setOnMouseClicked((evt) -> {
+        for (Map.Entry<Integer, TextField> entry2 : this.textFieldMap.entrySet()) {
+          int id2 = entry2.getKey();
+          TextField txf2 = entry2.getValue();
+          if (this.checkFilled(txf2, id2)) {
+            fillArr[id2] = 1;
+          } else {
+            fillArr[id2] = 0;
+          }
+        }
+        //System.out.println("TextField Printed ID:" + id + " fillArr sum:" + this.sumFilledArr());
+      });
+    }
 
     this.submit.setOnAction((evt) -> {
       feature.checkAnswers();
+      System.out.println("Submit Pressed" + System.lineSeparator());
     });
   }
 
@@ -289,12 +166,8 @@ public class TaxView implements ITaxView{
 
   @Override
   public boolean checkFilled(TextField textField, int id) {
-    try {
-      this.getTextFromField(textField, id);
-      return true;
-    } catch (IllegalArgumentException e) {
-      return false;
-    }
+    String str = textField.getText();
+    return str != "";
   }
 
   @Override
