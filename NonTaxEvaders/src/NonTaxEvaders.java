@@ -26,7 +26,7 @@ public class NonTaxEvaders extends Application {
     // stage.getIcons().add(ImageUtil.LOGO);
     stage.setMaximized(true);
     stage.show();
-    delay(500, () -> controller.start());
+    delay(750, () -> controller.start());
   }
 
   public static void delay(long millis, Runnable continuation) {
