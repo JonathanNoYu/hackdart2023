@@ -4,6 +4,7 @@ import controller.Feature;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,12 +17,13 @@ import javafx.scene.paint.Color;
 import util.popUpUtil;
 
 public class TaxView implements ITaxView{
+  private long start = System.currentTimeMillis();
   private final BorderPane mainPanel;
   private final Button submit = new Button("Submit");
   private final HashMap<Integer, TextField> textFieldMap = new HashMap<Integer, TextField>();
   private final HashMap<Integer, Label> captionMap = new HashMap<Integer, Label>();
   private final int[] fillArr = new int[18];
-  private final String css;
+  private final HashMap<String, String> backgroundMap = new HashMap<>();
   TextField txf1;
   TextField txf2;
   TextField txf3;
@@ -61,12 +63,18 @@ public class TaxView implements ITaxView{
   Label txt18;
 
   public TaxView() {
-    this.css = Objects.requireNonNull(getClass().getResource("/style/mainStyles.css"))
-        .toExternalForm();
+    backgroundMap.put("default",Objects.requireNonNull(getClass().getResource("/style/mainStyles.css"))
+        .toExternalForm());
+    backgroundMap.put("main",Objects.requireNonNull(getClass().getResource("/style/main_background.css"))
+        .toExternalForm());
+    backgroundMap.put("toad",Objects.requireNonNull(getClass().getResource("/style/toad_background.css"))
+        .toExternalForm());
+    backgroundMap.put("wario",Objects.requireNonNull(getClass().getResource("/style/wario_background.css"))
+        .toExternalForm());
     this.mainPanel = new BorderPane();
     this.mainPanel.setPrefHeight(900);
     this.mainPanel.setPrefWidth(1800);
-    this.mainPanel.getStylesheets().add(this.css);
+    this.mainPanel.getStylesheets().addAll(backgroundMap.get("default"),backgroundMap.get("main"));
     this.mainPanel.setId("main");
 
     VBox leftPane = new VBox();
@@ -178,7 +186,6 @@ public class TaxView implements ITaxView{
   @Override
   public void addFeatures(Feature feature) {
     for (Map.Entry<Integer, TextField> entry : this.textFieldMap.entrySet()) {
-      int id = entry.getKey();
       TextField txf = entry.getValue();
       txf.setPromptText(txf.getText());
       txf.setFocusTraversable(false);
@@ -275,6 +282,13 @@ public class TaxView implements ITaxView{
 
   @Override
   public void gameOver(boolean win) {
+    long end = System.currentTimeMillis();
+    long time = end - start;
+    String time_Taken = String.format("%d min, %d sec",
+        TimeUnit.MILLISECONDS.toMinutes(time),
+        TimeUnit.MILLISECONDS.toSeconds(time) -
+            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time))
+    );
     this.mainPanel.getStylesheets().removeAll(this.mainPanel.getStylesheets());
     this.mainPanel.getChildren().removeAll(this.mainPanel.getChildren());
     VBox centerPane = new VBox();
@@ -288,12 +302,23 @@ public class TaxView implements ITaxView{
     if(win) {
       css = Objects.requireNonNull(getClass().getResource("/style/win.css"))
           .toExternalForm();
-      label.setText("WOW, I didn't think you'll file your taxes correctly... Well done");
+      label.setText("WOW, I didn't think you'll file your taxes correctly... Well done, You took " + time_Taken);
     } else {
       css = Objects.requireNonNull(getClass().getResource("/style/loss.css"))
           .toExternalForm();
-      label.setText("Damn, it appears you just committed tax fraud. Your rights are now forfeit. Hand them over.");
+      label.setText("Damn, it appears you just committed tax fraud. Your rights are now forfeit. Hand them over\nYou took " + time_Taken);
     }
     this.mainPanel.getStylesheets().add(css);
+  }
+
+  @Override
+  public void renderBackground(String background) {
+    for(Map.Entry<String, String> entry: backgroundMap.entrySet()) {
+      if (Objects.equals(entry.getKey(), background)) {
+        this.mainPanel.getStylesheets().remove(1);
+        this.mainPanel.getStylesheets().add(entry.getValue());
+        return;
+      }
+    }
   }
 }

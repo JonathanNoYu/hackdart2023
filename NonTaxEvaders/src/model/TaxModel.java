@@ -202,6 +202,4 @@ public class TaxModel implements ITaxModel {
   public void addSubmit(Button button, Feature feature) {
     this.runpop.addSubmit(button, feature);
   }
-
-
 }

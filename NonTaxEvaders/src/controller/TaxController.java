@@ -26,8 +26,16 @@ public class TaxController implements Feature {
   @Override
   public void setToFilled(int count) {
     this.model.setFillCount(count);
-    if (count >= 1) {
-      this.model.popAllDocs();
+    switch (count) {
+      case 1:
+        this.model.popAllDocs();
+        break;
+      case 4:
+        this.view.renderBackground("toad");
+        break;
+      case 8:
+        this.view.renderBackground("wario");
+        break;
     }
   }
 

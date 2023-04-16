@@ -78,4 +78,10 @@ public interface ITaxView {
    * @param win is the boolean that tells us if you win or lose.
    */
   void gameOver(boolean win);
+
+  /**
+   * Sets the main background to a new one!
+   * @param background
+   */
+  void renderBackground(String background);
 }
