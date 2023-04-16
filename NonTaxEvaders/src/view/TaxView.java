@@ -7,12 +7,15 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import org.w3c.dom.Text;
 import util.popUpUtil;
 
@@ -20,6 +23,7 @@ public class TaxView implements ITaxView{
   private final BorderPane mainPanel;
   private final Button submit = new Button("Submit");
   private final HashMap<Integer, TextField> textFieldMap = new HashMap<Integer, TextField>();
+  private final HashMap<Integer, Label> captionMap = new HashMap<Integer, Label>();
   private final int[] fillArr = new int[18];
   private final String css;
   TextField txf1;
@@ -40,6 +44,26 @@ public class TaxView implements ITaxView{
   TextField txf16;
   TextField txf17;
   TextField txf18;
+
+  Label txt1;
+  Label txt2;
+  Label txt3;
+  Label txt4;
+  Label txt5;
+  Label txt6;
+  Label txt7;
+  Label txt8;
+  Label txt9;
+  Label txt10;
+  Label txt11;
+  Label txt12;
+  Label txt13;
+  Label txt14;
+  Label txt15;
+  Label txt16;
+  Label txt17;
+  Label txt18;
+
   public TaxView() {
     this.css = Objects.requireNonNull(getClass().getResource("/style/mainStyles.css"))
         .toExternalForm();
@@ -66,7 +90,6 @@ public class TaxView implements ITaxView{
     this.mainPanel.setCenter(middlePane);
     this.mainPanel.setRight(rightPane);
 
-
     this.txf1 = new TextField("FIRST NAME");
     this.txf2 = new TextField("LAST NAME");
     this.txf3 = new TextField("IS MARRIED?");
@@ -85,6 +108,25 @@ public class TaxView implements ITaxView{
     this.txf16 = new TextField("BENEFITS FROM DEPENDENCIES ");
     this.txf17 = new TextField("NUMBER OF COINS");
     this.txf18 = new TextField("TOTAL TAX OWED");
+
+    this.txt1 = new Label("Field A1");
+    this.txt2 = new Label("Field A1");
+    this.txt3 = new Label("Field A1");
+    this.txt4 = new Label("Field A1");
+    this.txt5 = new Label("Field A1");
+    this.txt6 = new Label("Field A1");
+    this.txt7 = new Label("Field A1");
+    this.txt8 = new Label("Field A1");
+    this.txt9 = new Label("Field A1");
+    this.txt10 = new Label("Field A1");
+    this.txt11 = new Label("Field A1");
+    this.txt12 = new Label("Field A1");
+    this.txt13 = new Label("Field A1");
+    this.txt14 = new Label("Field A1");
+    this.txt15 = new Label("Field A1");
+    this.txt16 = new Label("Field A1");
+    this.txt17 = new Label("Field A1");
+    this.txt18 = new Label("Field A1");
 
     textFieldMap.put(0, this.txf1);
     textFieldMap.put(1, this.txf2);
@@ -105,11 +147,36 @@ public class TaxView implements ITaxView{
     textFieldMap.put(16, this.txf17);
     textFieldMap.put(17, this.txf18);
 
+    captionMap.put(0, this.txt1);
+    captionMap.put(1, this.txt2);
+    captionMap.put(2, this.txt3);
+    captionMap.put(3, this.txt4);
+    captionMap.put(4, this.txt5);
+    captionMap.put(5, this.txt6);
+    captionMap.put(6, this.txt7);
+    captionMap.put(7, this.txt8);
+    captionMap.put(8, this.txt9);
+    captionMap.put(9, this.txt10);
+    captionMap.put(10, this.txt11);
+    captionMap.put(11, this.txt12);
+    captionMap.put(12, this.txt13);
+    captionMap.put(13, this.txt14);
+    captionMap.put(14, this.txt15);
+    captionMap.put(15, this.txt16);
+    captionMap.put(16, this.txt17);
+    captionMap.put(17, this.txt18);
+
     for (int i = 0; i < this.textFieldMap.size(); i++) {
-      middlePane.getChildren().add(this.textFieldMap.get(i));
+      HBox formLine = new HBox();
+      formLine.getChildren().addAll(this.captionMap.get(i), this.textFieldMap.get(i));
+      formLine.setBackground(new Background(new BackgroundFill(Color.TAN,
+              CornerRadii.EMPTY,
+              Insets.EMPTY)));
+      middlePane.getChildren().addAll(formLine);
     }
 
     middlePane.getChildren().add(this.submit);
+    middlePane.setAlignment(Pos.CENTER);
   }
 
   @Override
