@@ -3,7 +3,6 @@ package model;
 import java.util.Map;
 import java.util.Objects;
 import javafx.application.Application;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,7 +19,7 @@ public class PopUp extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
     private static int totalPages = 0;
-    private static String diary = "diary-1";
+    private static String docName = "diary-1";
     private final String diary1 = Objects.requireNonNull(getClass().getResource("/style/Diary1.css"))
         .toExternalForm();
     private final String buttonCSS = Objects.requireNonNull(getClass().getResource("/style/button.css"))
@@ -39,11 +38,11 @@ public class PopUp extends Application {
         stage.initStyle(StageStyle.TRANSPARENT);
         try {
             totalPages = Integer.parseInt(args[0]);
-            diary = args[1];
+            docName = args[1];
 
         } catch (NumberFormatException e) {
             totalPages = 0;
-            diary = args[1];
+            docName = args[1];
         }
 
         HashMap<Integer, Scene> map = new HashMap<>();
@@ -54,7 +53,7 @@ public class PopUp extends Application {
             Label label = new Label("Page " + (i+1) + " / Page " + maxPages);
             HBox layout = new HBox();
             for (Map.Entry<String,String> entry : this.cssMap.entrySet()) {
-                if (entry.getKey() == diary) {
+                if (entry.getKey() == docName) {
                     layout.getStylesheets().add(entry.getValue());
                 }
             }
