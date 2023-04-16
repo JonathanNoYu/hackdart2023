@@ -15,7 +15,7 @@ public class TaxModel implements ITaxModel {
   private int filledInputCount;
   private final Random rand;
   private boolean poppedUp;
-  private final String[] diaries = new String[]{"Diary1"};
+  private final String[] diaries = new String[]{"diary-1"};
   private final HashMap<String, Integer> diaryPages = new HashMap<>();
                                       //Answer     //scale 2w/d3  //2d arr //
   private final int[] diary1 = new int[]{2,10203,   6,0,4,3,1,0,   3, 5, 6, 1,      3,2};
@@ -33,8 +33,8 @@ public class TaxModel implements ITaxModel {
     this.inputCount = inputCount;
     this.filledInputCount = filledInputCount;
     this.rand = seed;
-    scale.put("Diary1",diary1);
-    diaryPages.put("Diary1", 8);
+    scale.put("diary-1",diary1);
+    diaryPages.put("diary-1", 8);
     this.answerArray = new String[this.inputCount];
     this.answerArray[0] = "T. Yoshisaur";
     this.answerArray[1] = "Munchakoopas";
@@ -151,7 +151,7 @@ public class TaxModel implements ITaxModel {
   @Override
   public void popAllDocs() {
     if (!poppedUp) {
-      this.renderDoc("Diary1");
+      this.renderDoc("diary-1");
       System.out.println("Pop All Docs Called in Model with Diary1");
       poppedUp = true;
     }

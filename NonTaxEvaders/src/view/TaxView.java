@@ -55,6 +55,7 @@ public class TaxView implements ITaxView{
     middlePane.setPrefHeight(900);
     middlePane.setPrefWidth(600);
 
+
     VBox rightPane = new VBox();
     rightPane.setPrefHeight(900);
     rightPane.setPrefWidth(600);
