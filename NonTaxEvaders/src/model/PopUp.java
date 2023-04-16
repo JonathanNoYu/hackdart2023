@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -22,6 +23,8 @@ public class PopUp extends Application {
     private int totalPages = 0;
     private String docName = "diary-1";
     private final ArrayList<Stage> allStages = new ArrayList<>();
+    public static Image LOGO = new Image(Objects.requireNonNull(
+        Thread.currentThread().getContextClassLoader().getResourceAsStream("logo_yes_yes.png")));
     private final String diary1 = Objects.requireNonNull(getClass().getResource("/style/Diary1.css"))
         .toExternalForm();
     private final String artifact1 = Objects.requireNonNull(getClass().getResource("/style/Artifact.css"))
@@ -128,6 +131,7 @@ public class PopUp extends Application {
             });
         }
 
+        stage.getIcons().add(LOGO);
         stage.setTitle(docName);
         stage.setScene(map.get(0));
         stage.show();
