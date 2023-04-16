@@ -7,14 +7,12 @@ import java.util.Objects;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javax.swing.text.LabelView;
 import util.popUpUtil;
 
 public class TaxView implements ITaxView{
@@ -195,7 +193,6 @@ public class TaxView implements ITaxView{
             fillArr[id2] = 0;
           }
         }
-        System.out.println("TextField Printed ID:" + id + " fillArr sum:" + this.sumFilledArr());
         feature.setToFilled(this.sumFilledArr());
       });
     }
@@ -207,7 +204,6 @@ public class TaxView implements ITaxView{
     Button fakeSubmit = new Button();
     fakeSubmit.onActionProperty().bindBidirectional(this.submit.onActionProperty());
     feature.addSubmit(fakeSubmit, feature);
-
   }
 
   /**

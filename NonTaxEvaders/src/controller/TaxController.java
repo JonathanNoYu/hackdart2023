@@ -21,7 +21,6 @@ public class TaxController implements Feature {
   @Override
   public void popUpDoc(String doc) {
     this.model.renderDoc(doc);
-    System.out.println("called popUpDoc from Controller with name " + doc);
   }
 
   @Override
@@ -29,9 +28,7 @@ public class TaxController implements Feature {
     this.model.setFillCount(count);
     if (count >= 1) {
       this.model.popAllDocs();
-      System.out.println("Called popAllDocs() in Controller");
     }
-    System.out.println("Set the Model fill count to " + count);
   }
 
   @Override
@@ -45,13 +42,6 @@ public class TaxController implements Feature {
         accumulator = accumulator && this.model.checkInput(this.view.getTextFromField(input, i), i);
       } catch (IllegalArgumentException e) {
         accumulator = false;
-      }
-      try {
-        System.out.print("Acc: " + accumulator + "  Model Check ID:" + i + "Input: "
-            + this.view.getTextFromField(input, i) + System.lineSeparator());
-      } catch (IllegalArgumentException e) {
-        System.out.print("Acc: " + accumulator + "  Model Check ID:" + i + "Input: "
-            + e.getMessage() + System.lineSeparator());
       }
     }
     this.view.gameOver(accumulator);

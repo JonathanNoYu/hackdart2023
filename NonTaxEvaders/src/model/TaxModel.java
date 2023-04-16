@@ -188,7 +188,6 @@ public class TaxModel implements ITaxModel {
       this.renderDoc("track_prizes"); // Make Buttons Black
       this.renderDoc("conversions"); // Make Buttons Black
       this.renderDoc("rules"); // Make Buttons Black
-      System.out.println("Pop All Docs Called in Model with Diary1");
       fullPoppedUp = true;
     }
   }
