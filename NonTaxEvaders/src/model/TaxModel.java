@@ -2,16 +2,21 @@ package model;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import javafx.scene.control.TextField;
 
 public class TaxModel implements ITaxModel {
   final private int inputCount;
+  final private String[] answerArray;
   private int filledInputCount;
   private final Random rand;
   private boolean poppedUp;
   private final String[] diaries = new String[]{"Diary1"};
-  private final int[] diary1 = new int[]{2,10203,6,0,4,3,1,0,3,6,3,2};
+  private final HashMap<String, Integer> diaryPages = new HashMap<>();
+                                      //Answer     //scale 2w/d3  //2d arr //
+  private final int[] diary1 = new int[]{2,10203,   6,0,4,3,1,0,   3, 5, 6, 1,      3,2};
   private final HashMap<String, int[]> scale = new HashMap<>();
 
   public TaxModel(int inputCount) {
@@ -27,31 +32,30 @@ public class TaxModel implements ITaxModel {
     this.filledInputCount = filledInputCount;
     this.rand = seed;
     scale.put("Diary1",diary1);
+    diaryPages.put("Diary1", 8);
+    this.answerArray = new String[this.inputCount];
+    this.answerArray[0] = "T. Yoshisaur";
+    this.answerArray[1] = "Munchakoopas";
+    this.answerArray[2] = "Y";
+    this.answerArray[3] = String.valueOf(this.diary1[0]);
+    this.answerArray[16] = String.valueOf(this.diary1[1]);
   }
 
   @Override
   public void generateDocs() {
-    // length of array is total possible inputs
-    int arraylength = this.inputCount;
-
-    // creating array with that length
-    String[] answerArray = new String[arraylength];
-
-
-    // document 1 generation - No Need
-    // document 2 generation - No Need
 
     // document 3 generation (goods amount)
-    String[] documentThree = new String[6];
-    documentThree[0] = String.valueOf(rand.nextInt(201) + 100);
-    documentThree[1] = String.valueOf(rand.nextInt(301) + 200);
-    documentThree[2] = String.valueOf(rand.nextInt(501) + 500);
-    documentThree[3] = String.valueOf(rand.nextInt(1001) + 500);
-    documentThree[4] = String.valueOf(rand.nextInt(2001) + 1000);
-    documentThree[5] = String.valueOf(rand.nextInt(3001) + 2000);
+    int[] document3 = new int[6];
+    document3[0] = rand.nextInt(201) + 100;
+    document3[1] = rand.nextInt(301) + 200;
+    document3[2] = rand.nextInt(501) + 500;
+    document3[3] = rand.nextInt(1001) + 500;
+    document3[4] = rand.nextInt(2001) + 1000;
+    document3[5] = rand.nextInt(3001) + 2000;
 
     // document 4 generation (prize winnings)
-    float[][] documentFour = new float[8][8];
+    // Mushroom, Shell, Flower,
+    float[][] document4 = new float[8][8];
     float[] array2dint = new float[8];
     float[] array2dfloat = new float[8];
 
@@ -72,7 +76,7 @@ public class TaxModel implements ITaxModel {
     //creating 8 by 8 array
     for (int i = 0; i<array2dint.length; i++){
       for (int j = 0; j < array2dfloat.length; i++){
-        documentFour[i][j] = array2dint[i] * array2dfloat[j];
+        document4[i][j] = array2dint[i] * array2dfloat[j];
       }
     }
 
@@ -88,6 +92,37 @@ public class TaxModel implements ITaxModel {
       document6[i] = rand.nextInt(1001) + 9000;
     }
 
+    this.answerArray[4] = String.valueOf(document3[0] * diary1[2]);
+    this.answerArray[5] = String.valueOf(document3[1] * diary1[3]);
+    this.answerArray[6] = String.valueOf(document3[2] * diary1[4]);
+    this.answerArray[7] = String.valueOf(document3[3] * diary1[5]);
+    this.answerArray[8] = String.valueOf(document3[4] * diary1[6]);
+    this.answerArray[9] = String.valueOf(document3[5] * diary1[7]);
+
+    int sum = 0;
+    for (int i = 4; i < 10; i++) {
+      sum += Integer.parseInt(this.answerArray[i]);
+    }
+    this.answerArray[10] = String.valueOf(sum);
+
+    this.answerArray[11] = String.valueOf(document4[diary1[7]][diary1[8]] + document4[diary1[9]][diary1[10]]);
+
+    int sum2 = 0;
+    for(int i = 0; i < document5.length; i++) {
+      sum2 += document5[i];
+    }
+    this.answerArray[12] = String.valueOf(sum2);
+
+    int sum3 = 0;
+    for(int i = 0; i < document6.length; i++) {
+      sum3 += document6[i];
+    }
+    this.answerArray[13] = String.valueOf(sum3);
+
+    this.answerArray[14] = String.valueOf(this.diary1[2] + sum2 + sum3);
+    this.answerArray[15] = String.valueOf(this.diary1[0] * 25000);
+    int sum4 = ((this.diary1[2] + sum2 + sum3) - (this.diary1[0] * 25000) + this.diary1[1]);
+    this.answerArray[17] = String.valueOf(sum4 * 0.1);
   }
 
   @Override
@@ -102,7 +137,9 @@ public class TaxModel implements ITaxModel {
 
   @Override
   public void renderDoc(String Doc) {
+    for(Map.Entry<String, Integer> entry : this.diaryPages.entrySet()) {
 
+    }
   }
 
   @Override

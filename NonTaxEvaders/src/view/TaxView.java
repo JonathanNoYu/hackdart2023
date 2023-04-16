@@ -2,19 +2,21 @@ package view;
 
 import controller.Feature;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import org.w3c.dom.Text;
 import util.popUpUtil;
 
 public class TaxView implements ITaxView{
   private final BorderPane mainPanel;
   private final Button submit = new Button("Submit");
   private final HashMap<Integer, TextField> textFieldMap = new HashMap<Integer, TextField>();
-  private final int[] fillArr = new int[17];
+  private final int[] fillArr = new int[18];
   TextField txf1;
   TextField txf2;
   TextField txf3;
@@ -32,6 +34,7 @@ public class TaxView implements ITaxView{
   TextField txf15;
   TextField txf16;
   TextField txf17;
+  TextField txf18;
   public TaxView() {
     this.mainPanel = new BorderPane();
     this.mainPanel.setPrefHeight(900);
@@ -53,7 +56,8 @@ public class TaxView implements ITaxView{
     this.txf14 = new TextField("DECLARED MONEY FROM DAMAGES");
     this.txf15 = new TextField("GROSS");
     this.txf16 = new TextField("BENEFITS FROM DEPENDENCIES ");
-    this.txf17 = new TextField("TOTAL TAX OWED");
+    this.txf17 = new TextField("NUMBER OF COINS");
+    this.txf18 = new TextField("TOTAL TAX OWED");
 
     for (int i = 0; i < this.textFieldMap.size(); i++) {
       this.mainPanel.getChildren().add(this.textFieldMap.get(i));
@@ -76,10 +80,20 @@ public class TaxView implements ITaxView{
     textFieldMap.put(14, this.txf15);
     textFieldMap.put(15, this.txf16);
     textFieldMap.put(16, this.txf17);
+    textFieldMap.put(17, this.txf18);
   }
 
   @Override
   public void addFeatures(Feature feature) {
+//    for (Map.Entry<Integer, TextField> entry : this.textFieldMap.entrySet()) {
+//      int id = entry.getKey();
+//      TextField txf = entry.getValue();
+//      if (this.checkFilled(txf, id)) {
+//        fillArr[id] = 1;
+//      } else {
+//        fillArr[id] = 0;
+//      }
+//    }
     this.txf1.setOnAction((evt) -> {
       if (this.checkFilled(this.txf1, 0)) {
         fillArr[0] = 1;
@@ -229,6 +243,14 @@ public class TaxView implements ITaxView{
         fillArr[16] = 1;
       } else {
         fillArr[16] = 0;
+      }
+      feature.setToFilled(this.sumFilledArr());
+    });
+    this.txf18.setOnAction((evt) -> {
+      if (this.checkFilled(this.txf18, 17)) {
+        fillArr[17] = 1;
+      } else {
+        fillArr[17] = 0;
       }
       feature.setToFilled(this.sumFilledArr());
     });
