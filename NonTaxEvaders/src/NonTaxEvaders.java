@@ -1,9 +1,11 @@
 import controller.Feature;
 import controller.TaxController;
+import java.util.Objects;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -13,6 +15,9 @@ import view.ITaxView;
 import view.TaxView;
 
 public class NonTaxEvaders extends Application {
+
+  public static Image LOGO = new Image(Objects.requireNonNull(
+      Thread.currentThread().getContextClassLoader().getResourceAsStream("logo_yes_yes.png")));
 
   public static void main(String[] args) {launch(args);}
 
@@ -28,16 +33,19 @@ public class NonTaxEvaders extends Application {
 
     // Start Scene with start button
     HBox start = new HBox();
+    start.setPrefHeight(900);
+    start.setPrefWidth(1800);
     start.setId("START");
     start.getStylesheets().add("style/startingStyle.css");
     Button startButton = new Button("Start!");
     startButton.setId("startBut");
     Button exitButton = new Button("x");
-    exitButton.setId("endBut");
+    exitButton.setId("exitBut");
     start.getChildren().addAll(startButton,exitButton);
     stage.setScene(new Scene(start));
     stage.initStyle(StageStyle.TRANSPARENT);
-    // stage.getIcons().add(ImageUtil.LOGO);
+    stage.getIcons().add(LOGO);
+
     stage.setMaximized(true);
     stage.show();
 
@@ -45,6 +53,7 @@ public class NonTaxEvaders extends Application {
       Stage newStage = new Stage();
       newStage.setMaximized(true);
       newStage.setScene(game);
+      newStage.getIcons().add(LOGO);
       newStage.show();
       stage.close();
       delay(1000, () -> controller.start());

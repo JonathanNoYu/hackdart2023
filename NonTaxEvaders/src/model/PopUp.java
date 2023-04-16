@@ -54,7 +54,7 @@ public class PopUp extends Application {
             HBox layout = new HBox();
             layout.getStylesheets().addAll(this.popUpStyle, this.buttonCSS);
             for (Map.Entry<String,String> entry : this.cssMap.entrySet()) {
-                if (entry.getKey() == docName) {
+                if (Objects.equals(entry.getKey(), docName)) {
                     layout.getStylesheets().add(entry.getValue());
                 }
             }
