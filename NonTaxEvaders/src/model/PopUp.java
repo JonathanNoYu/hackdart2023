@@ -40,7 +40,6 @@ public class PopUp extends Application {
         final int[] pageNum = {0};
 
         for(int i = 0; i < maxPages; i++) {
-            Label label = new Label("This is the " + (i+1) + " Scene");
             HBox layout = new HBox();
             layout.getStylesheets().add(css);
             layout.setId(i+"");
@@ -67,7 +66,7 @@ public class PopUp extends Application {
                 stage.setScene(map.get(pageNum[0]));
             });
 
-            layout.getChildren().addAll(label, forward, back);
+            layout.getChildren().addAll(back, forward);
 
         }
 
