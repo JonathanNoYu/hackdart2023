@@ -1,0 +1,23 @@
+#main {
+  -fx-background-image: url("../../../../res/you_dub.png");
+  -fx-background-repeat: stretch;
+  -fx-background-size: 1790 890;
+  -fx-background-position: center center;
+}
+
+.label {
+  -fx-font-size: 25px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #ffffff;
+  -fx-translate-x: 265;
+  -fx-translate-y: 400;
+}
+
+#endButton{
+  -fx-font-size: 25px;
+  -fx-text-fill: #019b05;
+  -fx-font-weight: BOLD;
+  -fx-background-color: #9b9b9b;
+  -fx-translate-x: 720;
+  -fx-translate-y: 475;
+}

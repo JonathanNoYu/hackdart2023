@@ -7,12 +7,14 @@ import java.util.Objects;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javax.swing.text.LabelView;
 import util.popUpUtil;
 
 public class TaxView implements ITaxView{
@@ -200,8 +202,12 @@ public class TaxView implements ITaxView{
 
     this.submit.setOnAction((evt) -> {
       feature.checkAnswers();
-      System.out.println("Submit Pressed" + System.lineSeparator());
     });
+
+    Button fakeSubmit = new Button();
+    fakeSubmit.onActionProperty().bindBidirectional(this.submit.onActionProperty());
+    feature.addSubmit(fakeSubmit, feature);
+
   }
 
   /**
@@ -269,5 +275,29 @@ public class TaxView implements ITaxView{
   @Override
   public Parent getView() {
     return this.mainPanel;
+  }
+
+  @Override
+  public void gameOver(boolean win) {
+    this.mainPanel.getStylesheets().removeAll(this.mainPanel.getStylesheets());
+    this.mainPanel.getChildren().removeAll(this.mainPanel.getChildren());
+    VBox centerPane = new VBox();
+    Label label = new Label("");
+    Button exitButton = new Button("Exit");
+    exitButton.setId("endButton");
+    exitButton.setOnAction((evt) -> Platform.exit());
+    centerPane.getChildren().addAll(label, exitButton);
+    this.mainPanel.setCenter(centerPane);
+    String css;
+    if(win) {
+      css = Objects.requireNonNull(getClass().getResource("/style/win.css"))
+          .toExternalForm();
+      label.setText("WOW, I didn't think you'll file your taxes correctly... Well done");
+    } else {
+      css = Objects.requireNonNull(getClass().getResource("/style/loss.css"))
+          .toExternalForm();
+      label.setText("Damn, it appears you just committed tax fraud. Your rights are now forfeit. Hand them over.");
+    }
+    this.mainPanel.getStylesheets().add(css);
   }
 }

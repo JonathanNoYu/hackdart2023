@@ -28,7 +28,6 @@ public class NonTaxEvaders extends Application {
     ITaxModel model = new TaxModel(view.getInputCount());
     model.generateDocs();
     Feature controller = new TaxController(model, view);
-    view.addFeatures(controller);
     stage.setTitle("NonTaxEvaders!");
     Scene game = new Scene(view.getView());
 
@@ -51,6 +50,7 @@ public class NonTaxEvaders extends Application {
     stage.show();
 
     startButton.setOnAction((evt) -> {
+      view.addFeatures(controller);
       Stage newStage = new Stage();
       newStage.setMaximized(true);
       newStage.setScene(game);

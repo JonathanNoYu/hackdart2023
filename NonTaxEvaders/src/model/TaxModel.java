@@ -1,16 +1,19 @@
 package model;
 
+import controller.Feature;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class TaxModel implements ITaxModel {
   final private int inputCount;
   final private String[] answerArray;
   private int filledInputCount;
+  private final RunPopUp runpop = new RunPopUp();
   private final Random rand;
   private boolean fullPoppedUp;
   private final String[] diaries = new String[]{"diary-1"};
@@ -171,7 +174,7 @@ public class TaxModel implements ITaxModel {
     for(Map.Entry<String, Integer> entry : this.documents.entrySet()) {
       if (Objects.equals(entry.getKey(), Doc)) {
         String[] args = new String[]{entry.getValue() + "",Doc};
-        RunPopUp.main(args);
+        runpop.main(args);
       }
     }
   }
@@ -195,4 +198,11 @@ public class TaxModel implements ITaxModel {
     int randomInt = this.rand.nextInt(diaries.length);
     this.renderDoc(diaries[randomInt]);
   }
+
+  @Override
+  public void addSubmit(Button button, Feature feature) {
+    this.runpop.addSubmit(button, feature);
+  }
+
+
 }

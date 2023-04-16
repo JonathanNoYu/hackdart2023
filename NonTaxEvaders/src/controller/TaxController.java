@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.ITaxModel;
 import view.ITaxView;
@@ -40,7 +41,11 @@ public class TaxController implements Feature {
     boolean accumulator = true;
     for(int i = 0; i < inputCount; i++) {
       input = this.view.getTextField(i);
-      accumulator = accumulator && this.model.checkInput(this.view.getTextFromField(input, i), i);
+      try {
+        accumulator = accumulator && this.model.checkInput(this.view.getTextFromField(input, i), i);
+      } catch (IllegalArgumentException e) {
+        accumulator = false;
+      }
       try {
         System.out.print("Acc: " + accumulator + "  Model Check ID:" + i + "Input: "
             + this.view.getTextFromField(input, i) + System.lineSeparator());
@@ -49,11 +54,17 @@ public class TaxController implements Feature {
             + e.getMessage() + System.lineSeparator());
       }
     }
+    this.view.gameOver(accumulator);
   }
 
   @Override
   public void start() {
     this.model.start();
+  }
+
+  @Override
+  public void addSubmit(Button button, Feature feature) {
+    this.model.addSubmit(button, feature);
   }
 
 

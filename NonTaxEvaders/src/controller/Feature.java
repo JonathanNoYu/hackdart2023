@@ -1,5 +1,8 @@
 package controller;
 
+import java.lang.module.FindException;
+import javafx.scene.control.Button;
+
 public interface Feature {
   /**
    *  Creates a new popup with
@@ -23,4 +26,11 @@ public interface Feature {
    * Starts some popups/information to let the user fill out some stuff or the game
    */
   void start();
+
+  /**
+   * Adds the submit button to the model class and closes windows if you submit
+   * @param button is the submit button
+   * @param feature is the controller used to help easily add action events to buttons
+   */
+  void addSubmit(Button button, Feature feature);
 }

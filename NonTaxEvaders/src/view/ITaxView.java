@@ -72,4 +72,10 @@ public interface ITaxView {
    * @return the parent panel
    */
   Parent getView();
+
+  /**
+   * Ends the game and depending on the boolean will show a different win or lose screen.
+   * @param win is the boolean that tells us if you win or lose.
+   */
+  void gameOver(boolean win);
 }

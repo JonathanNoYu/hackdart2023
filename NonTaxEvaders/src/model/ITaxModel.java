@@ -1,5 +1,7 @@
 package model;
 
+import controller.Feature;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public interface ITaxModel {
@@ -46,4 +48,11 @@ public interface ITaxModel {
    * Starts by rendering the diary and the rules
    */
   void start();
+
+  /**
+   * Adds the submit button to the popUp class and closes windows if you submit
+   * @param button is the submit button
+   * @param feature is the controller used to help easily add action events to buttons
+   */
+  void addSubmit(Button button, Feature feature);
 }

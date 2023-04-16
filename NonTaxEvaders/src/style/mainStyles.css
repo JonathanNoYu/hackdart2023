@@ -26,3 +26,7 @@
     -fx-background-radius: 5.0;
     -fx-border-color: black;
 }
+
+#fake {
+  -fx-translate-x: 100000;
+}
