@@ -50,4 +50,11 @@ public class TaxController implements Feature {
       }
     }
   }
+
+  @Override
+  public void start() {
+    this.model.start();
+  }
+
+
 }

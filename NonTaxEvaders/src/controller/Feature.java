@@ -18,4 +18,9 @@ public interface Feature {
    * If they are not all filled out, render warning to say it is
    */
   void checkAnswers();
+
+  /**
+   * Starts some popups/information to let the user fill out some stuff or the game
+   */
+  void start();
 }

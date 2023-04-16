@@ -1,0 +1,26 @@
+#forward{
+  -fx-font-size: 20px;
+  -fx-font-weight: SEMI_BOLD;
+  -fx-text-fill: #FFFFFF;
+  -fx-background-color: transparent;
+  -fx-translate-x: 370;
+  -fx-translate-y: 280;
+}
+
+#back{
+  -fx-font-size: 20px;
+  -fx-font-weight: SEMI_BOLD;
+  -fx-text-fill: #FFFFFF;
+  -fx-background-color: none;
+  -fx-translate-x: -530;
+  -fx-translate-y: 280;
+}
+
+#exit{
+  -fx-font-size: 20px;
+  -fx-font-weight: SEMI_BOLD;
+  -fx-text-fill: #FFFFFF;
+  -fx-background-color: none;
+  -fx-translate-x: -450;
+  -fx-translate-y: -285;
+}

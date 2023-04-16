@@ -3,18 +3,16 @@ package model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Random;
 import javafx.scene.control.TextField;
-import javax.swing.Popup;
 
 public class TaxModel implements ITaxModel {
   final private int inputCount;
   final private String[] answerArray;
   private int filledInputCount;
   private final Random rand;
-  private boolean poppedUp;
+  private boolean fullPoppedUp;
   private final String[] diaries = new String[]{"diary-1"};
   private final HashMap<String, Integer> diaryPages = new HashMap<>();
                                       //Answer     //scale 2w/d3  //2d arr //
@@ -150,10 +148,16 @@ public class TaxModel implements ITaxModel {
 
   @Override
   public void popAllDocs() {
-    if (!poppedUp) {
+    if (!fullPoppedUp) {
       this.renderDoc("diary-1");
       System.out.println("Pop All Docs Called in Model with Diary1");
-      poppedUp = true;
+      fullPoppedUp = true;
     }
-  };
+  }
+
+  @Override
+  public void start() {
+    int randomInt = this.rand.nextInt(diaries.length);
+    this.renderDoc(diaries[randomInt]);
+  }
 }

@@ -1,28 +1,42 @@
 package model;
 
+import java.util.Map;
 import java.util.Objects;
 import javafx.application.Application;
+import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.HashMap;
+import javafx.stage.StageStyle;
 
 public class PopUp extends Application {
+    private double xOffset = 0;
+    private double yOffset = 0;
     private static int totalPages = 0;
     private static String diary = "diary-1";
+    private final String diary1 = Objects.requireNonNull(getClass().getResource("/style/Diary1.css"))
+        .toExternalForm();
+    private final String buttonCSS = Objects.requireNonNull(getClass().getResource("/style/button.css"))
+        .toExternalForm();
+    private final String popUpStyle = Objects.requireNonNull(getClass().getResource("/style/popUpStyle.css"))
+        .toExternalForm();
+    private final HashMap<String, String> cssMap = new HashMap<>();
 
     public PopUp() {
-
+        cssMap.put("diary-1",diary1);
     }
 
     public void main(String[] args) {
 
         Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
         try {
             totalPages = Integer.parseInt(args[0]);
             diary = args[1];
@@ -31,44 +45,71 @@ public class PopUp extends Application {
             totalPages = 0;
             diary = args[1];
         }
-        String css = Objects.requireNonNull(getClass().getResource("/style/Diary1.css"))
-            .toExternalForm();
 
         HashMap<Integer, Scene> map = new HashMap<>();
 
         int maxPages = totalPages;
         final int[] pageNum = {0};
-
         for(int i = 0; i < maxPages; i++) {
-            Label label = new Label("This is the " + (i+1) + " Scene");
+            Label label = new Label("Page " + (i+1) + " / Page " + maxPages);
             HBox layout = new HBox();
-            layout.getStylesheets().add(css);
+            for (Map.Entry<String,String> entry : this.cssMap.entrySet()) {
+                if (entry.getKey() == diary) {
+                    layout.getStylesheets().add(entry.getValue());
+                }
+            }
+            layout.getStylesheets().addAll(this.popUpStyle, this.buttonCSS);
             layout.setId(i+"");
 
             layout.setId(i + "");
             System.out.println("Layout ID: " + i);
             layout.setAlignment(Pos.CENTER);
 
-            map.put(i, new Scene(layout, 900, 600));
+            Scene scene = new Scene(layout, 900, 600);
+            map.put(i, scene);
+            scene.setFill(Color.TRANSPARENT);
 
-            Button forward = new Button("-->");
-            forward.setOnAction((evt) -> {
-                if (pageNum[0] < maxPages - 1) {
-                    pageNum[0]++;
+            Button exit = new Button("x");
+            exit.setId("exit");
+            exit.setOnAction((evt) -> stage.close());
+            layout.getChildren().addAll(label, exit);
+
+            if (maxPages > 1) {
+                Button forward = new Button(">");
+                forward.setId("forward");
+                forward.setOnAction((evt) -> {
+                    if (pageNum[0] < maxPages - 1) {
+                        pageNum[0]++;
+                    }
+                    stage.setScene(map.get(pageNum[0]));
+                });
+
+                Button back = new Button("<");
+                back.setId("back");
+                back.setOnAction((evt) -> {
+                    if (pageNum[0] > 0) {
+                        pageNum[0]--;
+                    }
+                    stage.setScene(map.get(pageNum[0]));
+                });
+
+                layout.getChildren().addAll(forward, back);
+            }
+
+            layout.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
                 }
-                stage.setScene(map.get(pageNum[0]));
             });
-
-            Button back = new Button("<--");
-            back.setOnAction((evt) -> {
-                if (pageNum[0] > 0) {
-                    pageNum[0]--;
+            layout.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    stage.setX(event.getScreenX() - xOffset);
+                    stage.setY(event.getScreenY() - yOffset);
                 }
-                stage.setScene(map.get(pageNum[0]));
             });
-
-            layout.getChildren().addAll(label, forward, back);
-
         }
 
         stage.setTitle("CodersLegacy");

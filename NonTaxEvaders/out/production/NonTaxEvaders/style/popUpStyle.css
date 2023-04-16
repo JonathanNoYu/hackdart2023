@@ -1,0 +1,13 @@
+.HBox {
+  -fx-background-repeat: stretch;
+  -fx-background-size: 900 600;
+  -fx-background-position: center center;
+}
+
+.label {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #FFFFFF;
+  -fx-translate-x: 390;
+  -fx-translate-y: -285;
+}

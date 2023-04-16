@@ -1,8 +1,10 @@
 import controller.Feature;
 import controller.TaxController;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.ITaxModel;
 import model.TaxModel;
 import view.ITaxView;
@@ -20,8 +22,23 @@ public class NonTaxEvaders extends Application {
     view.addFeatures(controller);
     stage.setTitle("NonTaxEvaders!");
     stage.setScene(new Scene(view.getView()));
+    stage.initStyle(StageStyle.UNIFIED);
     // stage.getIcons().add(ImageUtil.LOGO);
     stage.setMaximized(true);
     stage.show();
+    delay(500, () -> controller.start());
+  }
+
+  public static void delay(long millis, Runnable continuation) {
+    Task<Void> sleeper = new Task<Void>() {
+      @Override
+      protected Void call() throws Exception {
+        try { Thread.sleep(millis); }
+        catch (InterruptedException e) { }
+        return null;
+      }
+    };
+    sleeper.setOnSucceeded(event -> continuation.run());
+    new Thread(sleeper).start();
   }
 }

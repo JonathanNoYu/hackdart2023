@@ -33,4 +33,9 @@ public interface ITaxModel {
    * Pop up all the documents
    */
   void popAllDocs();
+
+  /**
+   * Starts by rendering the diary and the rules
+   */
+  void start();
 }
