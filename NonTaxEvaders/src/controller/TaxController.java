@@ -20,7 +20,7 @@ public class TaxController implements Feature {
   @Override
   public void popUpDoc(String doc) {
     this.model.renderDoc(doc);
-    System.out.println("called popUpDoc from Controller");
+    System.out.println("called popUpDoc from Controller with name " + doc);
   }
 
   @Override
@@ -30,7 +30,7 @@ public class TaxController implements Feature {
       this.model.popAllDocs();
       System.out.println("Called popAllDocs() in Controller");
     }
-    System.out.println("Set the Model fill count to" + count);
+    System.out.println("Set the Model fill count to " + count);
   }
 
   @Override

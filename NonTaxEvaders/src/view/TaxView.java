@@ -127,7 +127,8 @@ public class TaxView implements ITaxView{
             fillArr[id2] = 0;
           }
         }
-        //System.out.println("TextField Printed ID:" + id + " fillArr sum:" + this.sumFilledArr());
+        System.out.println("TextField Printed ID:" + id + " fillArr sum:" + this.sumFilledArr());
+        feature.setToFilled(this.sumFilledArr());
       });
     }
 

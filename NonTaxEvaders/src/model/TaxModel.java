@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Random;
 import javafx.scene.control.TextField;
+import javax.swing.Popup;
 
 public class TaxModel implements ITaxModel {
   final private int inputCount;
@@ -140,15 +141,19 @@ public class TaxModel implements ITaxModel {
   @Override
   public void renderDoc(String Doc) {
     for(Map.Entry<String, Integer> entry : this.diaryPages.entrySet()) {
-
+      if (entry.getKey() == Doc) {
+        String[] args = new String[]{entry.getValue() + "",Doc};
+        RunPopUp.main(args);
+      }
     }
   }
 
   @Override
   public void popAllDocs() {
     if (!poppedUp) {
-      this.renderDoc("");
-      System.out.println("Pop All Docs Called in Model");
+      this.renderDoc("Diary1");
+      System.out.println("Pop All Docs Called in Model with Diary1");
+      poppedUp = true;
     }
   };
 }
