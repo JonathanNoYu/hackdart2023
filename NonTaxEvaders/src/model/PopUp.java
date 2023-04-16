@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 import javafx.application.Application;
@@ -20,6 +21,7 @@ public class PopUp extends Application {
     private double yOffset = 0;
     private int totalPages = 0;
     private String docName = "diary-1";
+    private final ArrayList<Stage> allStages = new ArrayList<>();
     private final String diary1 = Objects.requireNonNull(getClass().getResource("/style/Diary1.css"))
         .toExternalForm();
     private final String artifact1 = Objects.requireNonNull(getClass().getResource("/style/Artifact.css"))
@@ -39,17 +41,18 @@ public class PopUp extends Application {
     private final HashMap<String, String> cssMap = new HashMap<>();
 
     public PopUp() {
-        cssMap.put("diary-1",diary1);
-        cssMap.put("artifact1",artifact1);
-        cssMap.put("damaages", damaages);
-        cssMap.put("track_prizes", trackPrizes);
-        cssMap.put("conversions", conversions);
-        cssMap.put("rules", rules);
+        cssMap.put("diary-1",diary1);           // ID: 1
+        cssMap.put("artifact1",artifact1);      // ID: 2
+        cssMap.put("damaages", damaages);       // ID: 3
+        cssMap.put("track_prizes", trackPrizes);// ID: 4
+        cssMap.put("conversions", conversions); // ID: 5
+        cssMap.put("rules", rules);             // ID: 6
     }
 
     public void main(String[] args) {
 
         Stage stage = new Stage();
+        allStages.add(stage);
         stage.initStyle(StageStyle.TRANSPARENT);
         try {
             totalPages = Integer.parseInt(args[0]);
@@ -106,7 +109,6 @@ public class PopUp extends Application {
                     }
                     stage.setScene(map.get(pageNum[0]));
                 });
-
                 layout.getChildren().addAll(forward, back);
             }
 
@@ -134,5 +136,14 @@ public class PopUp extends Application {
 
     @Override
     public void start(Stage stage) {
+    }
+
+    /**
+     * Closes all the Stages/Windows
+     */
+    public void end() {
+        for(Stage stage: allStages) {
+            stage.close();
+        }
     }
 }

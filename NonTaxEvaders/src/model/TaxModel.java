@@ -39,10 +39,6 @@ public class TaxModel implements ITaxModel {
     documents.put("conversions", 1);
     documents.put("rules", 1);
 
-
-
-
-
     this.answerArray = new String[this.inputCount];
     this.answerArray[0] = "T. Yoshisaur";
     this.answerArray[1] = "Munchakoopas";
@@ -184,11 +180,11 @@ public class TaxModel implements ITaxModel {
   public void popAllDocs() {
     if (!fullPoppedUp) {
       // Render Each Image Separately
-      this.renderDoc("artifact1");
+      this.renderDoc("artifact1"); // Make Buttons Black
       this.renderDoc("damaages");
-      this.renderDoc("track_prizes");
-      this.renderDoc("conversions");
-      this.renderDoc("rules");
+      this.renderDoc("track_prizes"); // Make Buttons Black
+      this.renderDoc("conversions"); // Make Buttons Black
+      this.renderDoc("rules"); // Make Buttons Black
       System.out.println("Pop All Docs Called in Model with Diary1");
       fullPoppedUp = true;
     }
