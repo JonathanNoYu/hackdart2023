@@ -1,0 +1,20 @@
+#0{
+    -fx-background-image: url("../../../../res/artifact1.jpg");
+    -fx-background-size: 900 600;
+}
+#1{
+    -fx-background-image: url("../../../../res/artifact2.jpg");
+    -fx-background-size: 900 600;
+}
+#2{
+    -fx-background-image: url("../../../../res/artifact3.jpg");
+    -fx-background-size: 900 600;
+}
+#3{
+    -fx-background-image: url("../../../../res/artifact4.jpg");
+    -fx-background-size: 900 600;
+}
+#4{
+    -fx-background-image: url("../../../../res/artifact5.jpg");
+    -fx-background-size: 900 600;
+}

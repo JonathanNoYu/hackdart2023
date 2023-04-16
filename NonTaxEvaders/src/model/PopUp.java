@@ -28,6 +28,10 @@ public class PopUp extends Application {
         .toExternalForm();
     private final String trackPrizes = Objects.requireNonNull(getClass().getResource("/style/track_Prizes.css"))
         .toExternalForm();
+    private final String conversions = Objects.requireNonNull(getClass().getResource("/style/Conversions.css"))
+            .toExternalForm();
+    private final String rules = Objects.requireNonNull(getClass().getResource("/style/Rules.css"))
+            .toExternalForm();
     private final String buttonCSS = Objects.requireNonNull(getClass().getResource("/style/button.css"))
         .toExternalForm();
     private final String popUpStyle = Objects.requireNonNull(getClass().getResource("/style/popUpStyle.css"))
@@ -39,6 +43,8 @@ public class PopUp extends Application {
         cssMap.put("artifact1",artifact1);
         cssMap.put("damaages", damaages);
         cssMap.put("track_prizes", trackPrizes);
+        cssMap.put("conversions", conversions);
+        cssMap.put("rules", rules);
     }
 
     public void main(String[] args) {
