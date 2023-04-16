@@ -21,6 +21,10 @@
   -fx-font-weight: BOLD;
   -fx-text-fill: #FFFFFF;
   -fx-background-color: none;
+<<<<<<< HEAD
   -fx-translate-x: 410;
+=======
+  -fx-translate-x: 400;
+>>>>>>> d07d980e7ea435ab9d1da889b0b68d37f33ea30c
   -fx-translate-y: -285;
 }
