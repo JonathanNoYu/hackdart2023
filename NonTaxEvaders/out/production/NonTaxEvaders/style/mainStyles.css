@@ -1,0 +1,6 @@
+#main{
+  -fx-background-image: url("../../../../res/bg.png");
+  -fx-background-repeat: stretch;
+  -fx-background-size: 1800 900;
+  -fx-background-position: center center;
+}

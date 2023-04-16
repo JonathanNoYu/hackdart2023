@@ -46,6 +46,7 @@ public class TaxView implements ITaxView{
     this.mainPanel.setPrefHeight(900);
     this.mainPanel.setPrefWidth(1800);
     this.mainPanel.getStylesheets().add(this.css);
+    this.mainPanel.setId("main");
 
     VBox leftPane = new VBox();
     leftPane.setPrefHeight(900);
