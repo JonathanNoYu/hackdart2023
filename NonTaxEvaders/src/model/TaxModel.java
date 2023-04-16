@@ -156,7 +156,9 @@ public class TaxModel implements ITaxModel {
     return (Objects.equals(input, this.answerArray[id]));}
 
   @Override
-  public void setFillCount(int count) {this.filledInputCount = count;}
+  public void setFillCount(int count) {
+    this.filledInputCount = count;
+  }
 
   @Override
   public void renderDoc(String Doc) {
