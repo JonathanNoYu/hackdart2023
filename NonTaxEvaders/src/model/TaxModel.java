@@ -148,6 +148,7 @@ public class TaxModel implements ITaxModel {
   public void popAllDocs() {
     if (!poppedUp) {
       this.renderDoc("");
+      System.out.println("Pop All Docs Called in Model");
     }
   };
 }
