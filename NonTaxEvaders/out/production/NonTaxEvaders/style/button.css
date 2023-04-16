@@ -1,6 +1,6 @@
 #forward{
   -fx-font-size: 20px;
-  -fx-font-weight: SEMI_BOLD;
+  -fx-font-weight: BOLD;
   -fx-text-fill: #FFFFFF;
   -fx-background-color: transparent;
   -fx-translate-x: 370;
@@ -9,7 +9,7 @@
 
 #back{
   -fx-font-size: 20px;
-  -fx-font-weight: SEMI_BOLD;
+  -fx-font-weight: BOLD;
   -fx-text-fill: #FFFFFF;
   -fx-background-color: none;
   -fx-translate-x: -530;
@@ -18,7 +18,7 @@
 
 #exit{
   -fx-font-size: 20px;
-  -fx-font-weight: SEMI_BOLD;
+  -fx-font-weight: BOLD;
   -fx-text-fill: #FFFFFF;
   -fx-background-color: none;
   -fx-translate-x: -450;

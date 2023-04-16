@@ -18,8 +18,8 @@ import javafx.stage.StageStyle;
 public class PopUp extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
-    private static int totalPages = 0;
-    private static String docName = "diary-1";
+    private int totalPages = 0;
+    private String docName = "diary-1";
     private final String diary1 = Objects.requireNonNull(getClass().getResource("/style/Diary1.css"))
         .toExternalForm();
     private final String buttonCSS = Objects.requireNonNull(getClass().getResource("/style/button.css"))
@@ -52,12 +52,12 @@ public class PopUp extends Application {
         for(int i = 0; i < maxPages; i++) {
             Label label = new Label("Page " + (i+1) + " / Page " + maxPages);
             HBox layout = new HBox();
+            layout.getStylesheets().addAll(this.popUpStyle, this.buttonCSS);
             for (Map.Entry<String,String> entry : this.cssMap.entrySet()) {
                 if (entry.getKey() == docName) {
                     layout.getStylesheets().add(entry.getValue());
                 }
             }
-            layout.getStylesheets().addAll(this.popUpStyle, this.buttonCSS);
             layout.setId(i+"");
 
             layout.setId(i + "");

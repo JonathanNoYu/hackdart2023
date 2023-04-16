@@ -26,7 +26,7 @@ public class TaxController implements Feature {
   @Override
   public void setToFilled(int count) {
     this.model.setFillCount(count);
-    if (count >= 5) {
+    if (count >= 1) {
       this.model.popAllDocs();
       System.out.println("Called popAllDocs() in Controller");
     }
