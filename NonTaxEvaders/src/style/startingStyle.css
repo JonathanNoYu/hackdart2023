@@ -11,26 +11,28 @@
 
 #startBut {
   -fx-background-color:
-      #8a6618,
-      rgba(0,0,0,0.05),
-      linear-gradient(#dcca8a, #c7a740),
-      linear-gradient(#d5be63 0%, #d2a546 20%, #debf6b 80%, #c4aa4d 100%),
+      #9d771b,
+      rgba(231, 176, 73, 0.05),
+      linear-gradient(#bda761, #deb237),
+      linear-gradient(#d5be63 0%, #d2a546 20%, #ab8e46 80%, #937f36 100%),
       linear-gradient(#e5ce70, #ceb254);
   -fx-background-insets: 0,9 9 8 9,9,10,11;
   -fx-background-radius: 50;
   -fx-padding: 15 30 15 30;
   -fx-font-family: "Helvetica";
-  -fx-font-size: 20px;
+  -fx-font-size: 30px;
   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);
   -fx-font-weight: BOLD;
-  -fx-text-fill: #fdc802;
-  -fx-translate-x: 725;
-  -fx-translate-y: 680;
+  -fx-text-fill: #b08a01;
+  -fx-translate-x: 684;
+  -fx-translate-y: 648;
 }
 
 #exitBut {
-  -fx-font-size: 20px;
+  -fx-font-size: 30px;
   -fx-font-weight: BOLD;
   -fx-text-fill: #000000;
-  -fx-translate-x: 1300;
+  -fx-background-color: none;
+  -fx-translate-x: 1350;
+  -fx-translate-y: -15;
 }
