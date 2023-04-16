@@ -22,6 +22,12 @@ public class PopUp extends Application {
     private String docName = "diary-1";
     private final String diary1 = Objects.requireNonNull(getClass().getResource("/style/Diary1.css"))
         .toExternalForm();
+    private final String artifact1 = Objects.requireNonNull(getClass().getResource("/style/Artifact.css"))
+        .toExternalForm();
+    private final String damaages = Objects.requireNonNull(getClass().getResource("/style/Damaages.css"))
+        .toExternalForm();
+    private final String trackPrizes = Objects.requireNonNull(getClass().getResource("/style/track_Prizes.css"))
+        .toExternalForm();
     private final String buttonCSS = Objects.requireNonNull(getClass().getResource("/style/button.css"))
         .toExternalForm();
     private final String popUpStyle = Objects.requireNonNull(getClass().getResource("/style/popUpStyle.css"))
@@ -30,6 +36,9 @@ public class PopUp extends Application {
 
     public PopUp() {
         cssMap.put("diary-1",diary1);
+        cssMap.put("artifact1",artifact1);
+        cssMap.put("damaages", damaages);
+        cssMap.put("track_prizes", trackPrizes);
     }
 
     public void main(String[] args) {

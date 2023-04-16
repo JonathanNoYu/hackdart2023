@@ -40,7 +40,7 @@ public class TaxController implements Feature {
     boolean accumulator = true;
     for(int i = 0; i < inputCount; i++) {
       input = this.view.getTextField(i);
-      accumulator = accumulator && this.model.checkInput(input, i);
+      accumulator = accumulator && this.model.checkInput(this.view.getTextFromField(input, i), i);
       try {
         System.out.print("Acc: " + accumulator + "  Model Check ID:" + i + "Input: "
             + this.view.getTextFromField(input, i) + System.lineSeparator());

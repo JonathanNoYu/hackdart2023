@@ -36,9 +36,9 @@ public class TaxModel implements ITaxModel {
     this.answerArray = new String[this.inputCount];
     this.answerArray[0] = "T. Yoshisaur";
     this.answerArray[1] = "Munchakoopas";
-    this.answerArray[2] = "Y";
-    this.answerArray[3] = String.valueOf(this.diary1[0]);
-    this.answerArray[16] = String.valueOf(this.diary1[1]);
+    this.answerArray[2] = "1"; // Convert "Yes" to "1"
+    this.answerArray[3] = "6";
+    this.answerArray[16] = String.valueOf(this.diary1[1]); // 10203
   }
 
   @Override
@@ -75,7 +75,7 @@ public class TaxModel implements ITaxModel {
 
     //creating 8 by 8 array
     for (int i = 0; i < array2dfloat.length; i++) {
-      for (int j = 0; j < array2dint.length; i++) {
+      for (int j = 0; j < array2dint.length; j++) {
         document4[i][j] = array2dint[i] * array2dfloat[j];
       }
     }
@@ -125,24 +125,35 @@ public class TaxModel implements ITaxModel {
     int sum4 = ((this.diary1[2] + sum2 + sum3) - (this.diary1[0] * 25000) + this.diary1[1]);
     this.answerArray[17] = String.valueOf(sum4 * 0.1);
 
-    this.answerArray[4] = "";
-    this.answerArray[5] = "";
-    this.answerArray[6] = "";
-    this.answerArray[7] = "";
-    this.answerArray[8] = "";
-    this.answerArray[9] = "";
-    this.answerArray[10] = "";
-    this.answerArray[11] = "";
-    this.answerArray[12] = "";
-    this.answerArray[13] = "";
-    this.answerArray[14] = "";
-    this.answerArray[15] = "";
-    this.answerArray[16] = "";
-    this.answerArray[17] = "";
+    this.answerArray[0] = "T. Yoshisaur";
+    this.answerArray[1] = "Munchakoopas";
+    this.answerArray[2] = "1"; // Convert "Yes" to "1"
+    this.answerArray[3] = "6";
+    this.answerArray[4] = "768";
+    this.answerArray[5] = "0";
+    this.answerArray[6] = "2960";
+    this.answerArray[7] = "3285";
+    this.answerArray[8] = "2276";
+    this.answerArray[9] = "0";
+    this.answerArray[10] = "9289";
+    this.answerArray[11] = "760";
+    this.answerArray[12] = "37090";
+    this.answerArray[13] = "11360";
+    this.answerArray[14] = "58499";
+    this.answerArray[15] = "13000";
+    this.answerArray[16] = "10203";
+    this.answerArray[17] = "4595";
   }
 
   @Override
-  public boolean checkInput(TextField input, int id) {return (Objects.equals(input.getText(), this.answerArray[id]));}
+  public boolean checkInput(TextField input, int id) {
+    System.out.println("Input: " +input.getText() + " Answer: " + this.answerArray[id] + " ID:" + id);
+    return (Objects.equals(input.getText(), this.answerArray[id]));}
+
+  @Override
+  public boolean checkInput(String input, int id) {
+    System.out.println("Input: " +input + " Answer: " + this.answerArray[id] + " ID:" + id);
+    return (Objects.equals(input, this.answerArray[id]));}
 
   @Override
   public void setFillCount(int count) {this.filledInputCount = count;}
@@ -160,7 +171,11 @@ public class TaxModel implements ITaxModel {
   @Override
   public void popAllDocs() {
     if (!fullPoppedUp) {
-      this.renderDoc("diary-1");
+      // Render Each Image Separately
+      this.renderDoc("artifact1");
+      this.renderDoc("damaages");
+      this.renderDoc("track_prizes");
+      this.renderDoc("artifact1");
       System.out.println("Pop All Docs Called in Model with Diary1");
       fullPoppedUp = true;
     }

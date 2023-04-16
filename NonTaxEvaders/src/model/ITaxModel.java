@@ -10,12 +10,20 @@ public interface ITaxModel {
   void generateDocs();
 
   /**
+   * Checks the text-field given to see if it matches up with the rng answer.
+   * @param input is the string input text-field
+   * @param id is the number that is associated with which correct answer is.
+   * @return boolean to show if the input is correct or not.
+   */
+  boolean checkInput(TextField input, int id);
+
+  /**
    * Checks the input given to see if it matches up with the rng answer.
    * @param input is the string input that needs
    * @param id is the number that is associated with which correct answer is.
    * @return boolean to show if the input is correct or not.
    */
-  boolean checkInput(TextField input, int id);
+  boolean checkInput(String input, int id);
 
   /**
    *  Sets the fill count of the model to the given count

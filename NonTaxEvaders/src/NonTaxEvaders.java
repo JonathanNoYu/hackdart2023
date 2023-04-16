@@ -26,6 +26,7 @@ public class NonTaxEvaders extends Application {
     // Start of full game MVC
     ITaxView view = new TaxView();
     ITaxModel model = new TaxModel(view.getInputCount());
+    model.generateDocs();
     Feature controller = new TaxController(model, view);
     view.addFeatures(controller);
     stage.setTitle("NonTaxEvaders!");

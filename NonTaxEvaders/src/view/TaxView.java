@@ -3,9 +3,7 @@ package view;
 import controller.Feature;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,10 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.DragEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import org.w3c.dom.Text;
 import util.popUpUtil;
 
 public class TaxView implements ITaxView{
@@ -247,12 +243,15 @@ public class TaxView implements ITaxView{
     if (str == "") {
       throw new IllegalArgumentException("Empty");
     }
-    if (ind >= 2) { // 0 or 1 is first and last name, aka Strings
+    if (ind > 2) { // 0 or 1 is first and last name, aka Strings
       try {
         Integer.parseInt(str);
       } catch (NumberFormatException e) {
         throw new IllegalArgumentException("Invalid answer, got: " + str + ", instead of a number");
       }
+    } else if (ind == 2 && str.toLowerCase().equals("y")
+        || str.toLowerCase().equals("yes") || str.toLowerCase().equals("yeah")) {
+      return "1";
     }
     return str;
   }
