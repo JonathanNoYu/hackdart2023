@@ -33,6 +33,16 @@ public class TaxModel implements ITaxModel {
     this.rand = seed;
     scale.put("diary-1",diary1);
     documents.put("diary-1", 8);
+    documents.put("artifact1", 5);
+    documents.put("damaages", 3);
+    documents.put("track_prizes", 1);
+    documents.put("conversions", 1);
+    documents.put("rules", 1);
+
+
+
+
+
     this.answerArray = new String[this.inputCount];
     this.answerArray[0] = "T. Yoshisaur";
     this.answerArray[1] = "Munchakoopas";
@@ -177,7 +187,8 @@ public class TaxModel implements ITaxModel {
       this.renderDoc("artifact1");
       this.renderDoc("damaages");
       this.renderDoc("track_prizes");
-      this.renderDoc("artifact1");
+      this.renderDoc("conversions");
+      this.renderDoc("rules");
       System.out.println("Pop All Docs Called in Model with Diary1");
       fullPoppedUp = true;
     }

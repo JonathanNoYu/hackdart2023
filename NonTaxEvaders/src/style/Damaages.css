@@ -1,0 +1,12 @@
+#0{
+    -fx-background-image: url("../../../../res/damaages.png");
+    -fx-background-size: 900 600;
+}
+#1{
+    -fx-background-image: url("../../../../res/damaages-1.png");
+    -fx-background-size: 900 600;
+}
+#2{
+    -fx-background-image: url("../../../../res/damaages-2.png");
+    -fx-background-size: 900 600;
+}
